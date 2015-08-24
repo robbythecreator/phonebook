@@ -12,94 +12,27 @@ void outputphonenumber(string entered_name, string name_book[][501]);
 //entered_name is the name you enter, name_book is your array, firstlasttest tells the function
 //whether to go through the first or last names of the array.
 void makearray(istream& instream, string name_book[][501]);
+
 void sortarray(string book_name[][501]);
+
 void fixname(string& fixname);
+
 void findname(string array_of_names[][501], string entered_name);
+
 int main() {
+
   string namebook[3][501], name_entered; ifstream in_stream;
   in_stream.open("500_clean.csv");
   if(in_stream.fail()){
     cout << "Input file opening failed.\n";
     exit(1); }
-  makearray(in_stream, namebook);
-  sortarray(namebook);
-  
-  //  string testname1 = namebook[0][167], testname2=namebook[0][333];
-  cout << "Please enter the name of the person whose phone number you would like: " << endl;
-  cin >> name_entered;
-  findname(namebook,name_entered);
-  
+	makearray(in_stream, namebook);
+	sortarray(namebook);
 
-
-
-
-  
-  //fixname(name_entered);
-  
-
-  /*
-  bool true_false_test1=true; 
-  bool true_false_test2=true; 
-  bool firstlast=false;
-  first_or_last(firstlast,name_entered, namebook);
-  bigorsmall(true_false_test1, testname1, name_ //  outputphonenumber(name_entered, namebook);
-  //  outputphonenumber(name_entered, namebook);
-  if(firstlast == true){
-    cout << "You entered a first name";
-    
-    bigorsmall(true_false_test1,testname1, name_entered);
-    bigorsmall(true_false_test2, testname2, name_entered);
-    
-    
-    if((name_entered.length() < 3) || name_entered.length() > 12) {
-      cout << "Sorry but the phonebook does not contain the name you are looking for.\n";
-      exit(1);
-    }
-    if(true_false_test1 == true) {
-      //    cout << name_entered << " is a higher order than " << testname1 << endl;
-      for(int i = 167; i >= 0; i--) {
-	string searchname = namebook[0][i];
-	if(name_entered == searchname) {
-	  cout << "The phone number for " << namebook[0][i] << " " << namebook[1][i] << " is: " << namebook[2][i] << endl;
-	  exit(1);
-	}
-      }
-    }
-    else if(true_false_test2 == true) {
-      cout << name_entered << " is a higher order than " << testname2 << " but a lower order than " << testname1 << endl;
-      for(int i = 167; i >= 333; i--) {
-	string searchname = namebook[0][i];
-	if(name_entered == searchname) {
-	  cout << "The phone number for " << namebook[0][i] << " " << namebook[1][i] << " is: " << namebook[2][i] << endl;
-	  exit(1);
-	}
-      }
-    }
-    else {
-      //cout << name_entered << " is a higher order than " << testname3 << " but a lower order than " << testname2 << endl;
-      for(int i = 333; i < 500; i++) {
-	string searchname = namebook[0][i];
-	if(name_entered == searchname) {
-	  cout << "The phone number for " << namebook[0][i] << " " << namebook[1][i] << " is: " << namebook[2][i] << endl;
-	  exit(1);
-	}
-      }
-    }
-    
-  }
-  else {
-    cout << "you entered a lastname\n";
-    bool nametest=false;
-    for(int i = 0; i < 500; i++) {
-      string searchname = namebook[1][i];
-      if(name_entered == searchname) {
-	cout << "The phone number for " << namebook[0][i] << " " << namebook[1][i] << " is: " << namebook[2][i] << endl;
-	exit(1);
-      }
-    }
-    if(nametest == false) {cout << "Sorry the phonebook does not contain the name you are looking for.\n";}
-  }*/
-  return 0;				
+  	cout << "Please enter the name of the person whose phone number you would like: " << endl;
+  	cin >> name_entered;
+  	findname(namebook,name_entered);
+  	return 0;				
 }
 
 
