@@ -36,8 +36,6 @@ int main() {
 }
 
 
-
-
 void bigorsmall(bool& true_false, string old_name, string new_name) {
   char a = new_name[0], b = old_name[0]; int length;
   if(new_name.length() > old_name.length()) { length = old_name.length(); } else { length = new_name.length(); }
@@ -126,7 +124,8 @@ void sortarray(string book_name[][501]) {
     }
   }
 }
-void fixname(string& fixname) {
+void fixname(string& fixname) //here we make the users input is the same case format (i.e. "Xxxx Xxxx") as the phonebook's
+{  
   int length = fixname.length();
   char c = fixname[0];
   fixname[0] = toupper(c);
@@ -159,70 +158,86 @@ void findname(string array_of_names[][501], string entered_name) {
     for(i = 0; i < 501; i++) {
       fixname(build_name);
       if(build_name == array_of_names[0][i]) {
-	//cout << "you entered a first name\n";
+	      //cout << "you entered a first name\n";
 	        
-	if(entered_name[ii+1] != '\0') {        
+	      if(entered_name[ii+1] != '\0') {        
 	  
-	  for(int iii= ii+1; iii < lengthofname; iii++) {
-	    //puts characters onto a second string until the string equals another name        
-	    //cout << entered_name[iii] << endl;            
+	        for(int iii= ii+1; iii < lengthofname; iii++) {
+	          //puts characters onto a second string until the string equals another name        
+	          //cout << entered_name[iii] << endl;            
 	    
-	    if(entered_name[iii] != ' ') {
-	      build_other_name += entered_name[iii];
-	      fixname(build_other_name);
-	      //cout << build_other_name << endl;                
+	          if(entered_name[iii] != ' ') {
+	            build_other_name += entered_name[iii];
+	            fixname(build_other_name);
+	            //cout << build_other_name << endl;                
 	      
-	      if(build_other_name == array_of_names[1][i]) {
-		//cout << "you entered a last name\n";
-		cout << "you entered " << array_of_names[0][i] << " " << array_of_names[1][i] << endl;
-		cout << "the phone number you want is: " << array_of_names[2][i] << endl;
-		exit(1);
+	            if(build_other_name == array_of_names[1][i]) {
+		            //cout << "you entered a last name\n";
+		            cout << "you entered " << array_of_names[0][i] << " " << array_of_names[1][i] << endl;
+		            cout << "the phone number you want is: " << array_of_names[2][i] << endl;
+		            exit(1);
+	              }
+	            }
+	          else if(entered_name[iii+1] == ' ') 
+            {
+	            break;
+	          }
+	        }
 	      }
-	    }
-	    else if(entered_name[iii+1] == ' ') {
-	      break;
-	    }
-	  }
-	}
-	else { cout << "you only entered a first name\n"; 
-	  cout << "you entered " << array_of_names[0][i] << " " << array_of_names[1][i] << endl;
-	  cout << "the phone number you want is: " << array_of_names[2][i] << endl;
-	}        
+	      else 
+        { 
+          cout << "You only entered a first name.\n"; 
+	        cout << "I'm assuming you want the phone number of " << array_of_names[0][i] << " " << array_of_names[1][i] << "." << endl;
+	        cout << "Their number is: " << array_of_names[2][i] << endl;
+          exit(1);
+	      }        
       }
               
       else if(build_name == array_of_names[1][i]) {
-	//cout << "you entered a last name\n";
+	      //cout << "you entered a last name\n";
 	
-	if(entered_name[ii+1] != '\0') {        
+	      if(entered_name[ii+1] != '\0') {        
 	          
-	  for(int iii= ii+1; iii < lengthofname; iii++) {
-	    //puts characters onto a second string until the string equals another name        
-	    //cout << entered_name[iii] << endl;            
+	        for(int iii= ii+1; iii < lengthofname; iii++) {
+	          //puts characters onto a second string until the string equals another name        
+	          //cout << entered_name[iii] << endl;            
 	            
-	    if(entered_name[iii] != ' ') {
-	      build_other_name += entered_name[iii];
-	      fixname(build_other_name);
-	      //cout << build_other_name << endl;                
+	          if(entered_name[iii] != ' ') {
+	            build_other_name += entered_name[iii];
+	            fixname(build_other_name);
+	            //cout << build_other_name << endl;                
 	      
-	      if(build_other_name == array_of_names[0][i]) {
-		//cout << "you entered a first name\n";
-		cout << "you entered " << array_of_names[0][i] << " " << array_of_names[1][i] << endl;
-		cout << "the phone number you is: " << array_of_names[2][i] << endl;
-		exit(1);
+	            if(build_other_name == array_of_names[0][i]) {
+		            //cout << "you entered a first name\n";
+		            cout << "You entered " << array_of_names[0][i] << " " << array_of_names[1][i] << "." << endl;
+		            cout << "The phone number you want is: " << array_of_names[2][i] << endl;
+		            exit(1);
+	            }
+	          }
+
+	          else if(entered_name[iii+1] == ' ') {
+	            break;
+	          }
+	        }
 	      }
-	    }
-	            
-	    else if(entered_name[iii+1] == ' ') {
-	      break;
-	    }
-	  }
-	}
 	
-	else { cout << "you only entered a last name\n"; 
-	  cout << "you entered " << array_of_names[0][i] << " " << array_of_names[1][i] << endl;
-	  cout << "the phone number you is: " << array_of_names[2][i] << endl;
-	}    
-      }     
+    	  else { cout << "You only entered a last name.\n"; 
+	        cout << "I'm assuming you want the phone number of " << array_of_names[0][i] << " " << array_of_names[1][i] << "." << endl;
+	        cout << "Their number is: " << array_of_names[2][i] << endl;
+          exit(1);
+	      }    
+      }    
     }    
-  } 
+  }
+  string yesno;
+  cout << "Your entry does not match any name in the phonebook." << endl;
+  cout << "Would you like to try another name? (Y/N then hit enter)" << endl;
+  cin >> yesno;
+  if(yesno[0] == 'Y' or yesno[0] == 'y'){
+    main();
+  }
+  else {
+    cout << "Sorry that I couldn't assist you, goodluck finding what you're looking for!" << endl;
+    exit(1);
+  }
 }
